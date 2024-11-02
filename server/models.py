@@ -34,6 +34,32 @@ class User(db.Model, SerializerMixin):
 
 
 
+class Event(db.Model, SerializerMixin):
+    __tablename__ = 'events'
+
+    id = db.Column(db.Integer, primary_key = True)
+    title = db.Column(db.String(100), nullable = False)
+    description = db.Column(db.Text, nullable = False)
+    location = db.Column(db.String(100), nullable = False)
+    date_time = db.Column(db.DateTime)
+    category = db.Column(db.String)
+    image_url = db.Column(db.String)
+
+    merchs = db.relationship('Merch', back_populates = 'event')
 
 
+class Merch(db.Model, SerializerMixin):
+    __tablename__ = 'merchs'
+
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String, nullable = False)
+    description = db.Column(db.String, nullable = False)
+    price = db.Column(db.Integer, nullable = False)
+    image_url = db.Column(db.String, nullable = False)
+
+    event_id = db.Column(db.Integer, db.ForeignKey("events.id"), nullable = False)
+
+    event = db.relationship('Event', back_populates = 'merchs')
+
+    serialize_rules = ['-event']
 

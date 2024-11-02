@@ -1,4 +1,4 @@
-from models import db
+from models import db, User, Event, Merch
 from flask_migrate import Migrate
 import stripe
 from flask import Flask, request, make_response, jsonify, session, redirect, json
@@ -33,6 +33,29 @@ CORS(app, supports_credentials=True)
 def home():
     message = 'Welcome'
     return jsonify(message), 200
+
+
+@app.route('/events')
+def get_events():
+    events = Event.query.all() 
+    event_dict = []
+
+    for event in events:
+        event_dict.append(event.to_dict())
+
+    return event_dict, 200
+
+
+@app.route('/merchs')
+def get_merchs():
+    merchs = Merch.query.all()
+
+    merch_dict = []
+
+    for merch in merchs:
+        merch_dict.append(merch.to_dict())
+
+    return merch_dict, 200
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)
