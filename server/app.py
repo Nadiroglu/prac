@@ -35,7 +35,7 @@ def home():
     return jsonify(message), 200
 
 
-@app.route('/events')
+@app.route('/api/events')
 def get_events():
     events = Event.query.all() 
     event_dict = []
