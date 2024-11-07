@@ -1,7 +1,7 @@
 import App from "./src/App"
 import Home from "./src/components/Home";
 
-const router = [
+const routes = [
     {
         path: '/',
         element: <App />,
@@ -14,4 +14,4 @@ const router = [
     }
 ]
 
-export default router;
+export default routes;
