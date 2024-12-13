@@ -14,6 +14,7 @@ flask-sqlalchemy = "*"
 flask-cors = "*"
 python-dotenv = "*"
 stripe = "*"
+datadog = "*"
 
 [dev-packages]
 
